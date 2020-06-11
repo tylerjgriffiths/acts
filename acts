@@ -15,7 +15,7 @@ fi
 if [ "$#" = "1" ] && { [ "$1" = "-h" ] || [ "$1" = "--help" ]; }; then
     echo "usage: acts [-c /path/to/acts.conf]"
     echo
-    echo "Configuration should be in /etc/acts.conf or /usr/local/etc/acts.conf,"
+    echo "Configuration should be in /etc/acts.conf, /etc/acts/acts.conf, or /usr/local/etc/acts.conf,"
     echo "or given after the -c option"
     echo "See https://github.com/alexjurkiewicz/acts for more information."
     exit 0
@@ -81,11 +81,14 @@ if [ -n "$acts_conf" ]; then
 elif [ -f /etc/acts.conf ]; then
     . /etc/acts.conf
     log_debug "load-config source=/etc/acts.conf"
+elif [ -f /etc/acts/acts.conf ]; then
+    . /etc/acts/acts.conf
+    log_debug "load-config source=/etc/acts/acts.conf"
 elif [ -f /usr/local/etc/acts.conf ]; then
     . /usr/local/etc/acts.conf
     log_debug "load-config source=/usr/local/etc/acts.conf"
 else
-    die "load-config-error message=\"No /etc/acts.conf, /usr/local/etc/acts.conf, or -c option\""
+    die "load-config-error message=\"No /etc/acts.conf, /etc/acts/acts.conf, /usr/local/etc/acts.conf, or -c option\""
 fi
 # Use default values if anything is not set
 verbose="${verbose=0}"
