@@ -28,7 +28,7 @@ Usage
 -----
 
 1.  Take `acts.conf.sample`, customise it for your environment, and save
-    it to `/etc/acts.conf` or `/usr/local/etc/acts.conf`.
+    it to `/etc/acts.conf`, `/etc/acts/acts.conf`, or `/usr/local/etc/acts.conf`.
 2.  Run `acts` daily from cron.
 
 Notes on behaviour:
